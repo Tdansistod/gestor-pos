@@ -4,6 +4,8 @@ const setStyle = (url = window.location.pathname) => {
   // Asegurarse de que la ruta no tenga el slash al final
   const path = url.endsWith("/") ? url.slice(0, -1) : url;
 
+  console.log(path);
+
   // Esto asegura que si estás en GitHub Pages, las rutas se interpreten correctamente.
   if (path === "/" || path === "/index.html") {
     document.getElementById("/")?.classList.add("active");
