@@ -83,7 +83,7 @@ class SideBar extends HTMLElement {
       <h1 class="title">Proveedores</h1>
     </li>
         </a>
-   <a href="clients.html" id="clients">
+   <a href="client.html" id="client">
     <li>
       <svg
         width="1.5rem"

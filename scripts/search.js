@@ -1,5 +1,7 @@
 const search = () => {
-  const productos = JSON.parse(localStorage.getItem("productData")) || [];
+  const itemName = getItemName();
+  const properties = getProperties();
+  const productos = JSON.parse(localStorage.getItem(itemName)) || [];
   const searchInput = document.getElementById("search");
   const resultsList = document.getElementById("autocomplete-list");
   searchInput?.focus();
@@ -14,15 +16,15 @@ const search = () => {
     }
 
     const filtered = productos.filter((p) =>
-      p.Producto.toLowerCase().includes(query)
+      p[properties[0]].toLowerCase().includes(query)
     );
     filtered
       .slice(0, 5) // Limitar sugerencias
       .forEach((p) => {
         const button = document.createElement("button");
-        button.textContent = p.Producto;
+        button.textContent = p[properties[0]];
         button.addEventListener("click", () => {
-          searchInput.value = p.Producto;
+          searchInput.value = p[properties[0]];
           displayCards(undefined, [p]);
           resultsList.innerHTML = ""; // Ocultar lista al seleccionar
         });

@@ -9,11 +9,12 @@ const saveChange = (input, property) => {
   const id = input.name;
   const newValue = input.value;
 
-  let productos = JSON.parse(localStorage.getItem("productData")) || [];
+  const itemName = getItemName();
+  let data = JSON.parse(localStorage.getItem(itemName)) || [];
 
-  let item = productos.find((p) => p.id == id);
+  let item = data.find((p) => p.id == id);
   if (item) item[property] = newValue;
 
-  localStorage.setItem("productData", JSON.stringify(productos));
+  localStorage.setItem(itemName, JSON.stringify(data));
   input.classList.remove("activeInput");
 };

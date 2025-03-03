@@ -21,10 +21,10 @@ const setStyle = (url = window.location.pathname) => {
     document.getElementById("supplier")?.classList.remove("active");
   }
 
-  if (path === "clients") {
-    document.getElementById("clients")?.classList.add("active");
+  if (path === "client") {
+    document.getElementById("client")?.classList.add("active");
   } else {
-    document.getElementById("clients")?.classList.remove("active");
+    document.getElementById("client")?.classList.remove("active");
   }
 };
 
@@ -34,4 +34,5 @@ swup.hooks.on("page:view", (visit) => {
   setStyle(visit.to.url);
   displayCards();
   search();
+  showHideButtons();
 });
