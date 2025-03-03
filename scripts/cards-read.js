@@ -1,6 +1,6 @@
 function displayCards(event, filtered) {
   const container = document.getElementsByClassName("cards")[0];
-  const itemName = getItemName();
+  const itemName = getLocation();
   const data = filtered || JSON.parse(localStorage.getItem(itemName));
 
   if (!data || !data[0]) {

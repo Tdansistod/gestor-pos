@@ -36,7 +36,7 @@ const saveItem = (button) => {
     card.querySelector(`input[placeholder="${e}"]`).value.trim()
   );
 
-  const itemName = getItemName();
+  const itemName = getLocation();
   let data = JSON.parse(localStorage.getItem(itemName)) || [];
 
   let newItem = properties.reduce((acc, property, index) => {

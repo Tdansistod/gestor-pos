@@ -12,8 +12,8 @@
       href="https://fonts.googleapis.com/css2?family=Encode+Sans:wght@100..900&display=swap"
       rel="stylesheet"
     />
-    <script src="scripts/side-bar.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.1/xlsx.full.min.js"></script>
+    <script src="scripts/side-bar.js"></script>
     <script src="scripts/app-config.js"></script>
     <script defer src="scripts/selection.js"></script>
     <script defer src="scripts/excel-reader.js"></script>
@@ -25,10 +25,10 @@
   </head>
   <body>
     <side-bar></side-bar>
-    <script src="scripts/themeButton,js"></script>
+    <script src="scripts/set-style,js"></script>
     <main class="content transition-fade" id="swup">
       <div class="header">
-        <h1>Clientes</h1>
+        <h1>Gestión de inventario</h1>
       </div>
       <div class="actionBar">
         <div class="searchContainer">
@@ -105,7 +105,7 @@
                 />
               </g>
             </svg>
-            Añadir cliente
+            Añadir producto
           </button>
           <button
             class="excel-btn"
@@ -172,9 +172,10 @@
           />
           <div class="checkmark"></div>
         </label>
-        <p>Cliente</p>
-        <p>Contacto</p>
-        <p>Teléfono</p>
+        <p>Producto</p>
+        <p>Categoría</p>
+        <p>Precio</p>
+        <p>Stock</p>
       </div>
       <div class="cards"></div>
     </main>

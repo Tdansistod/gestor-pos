@@ -1,0 +1,32 @@
+if (localStorage.getItem("theme") === "dark")
+  document.getElementById("toggle").checked = true;
+
+const setStyle = () => {
+  const path = getLocation();
+
+  if (path === "" || path === "index") {
+    document.getElementById("/")?.classList.add("active");
+  } else {
+    document.getElementById("/")?.classList.remove("active");
+  }
+
+  if (path === "products") {
+    document.getElementById("products")?.classList.add("active");
+  } else {
+    document.getElementById("products")?.classList.remove("active");
+  }
+
+  if (path === "suppliers") {
+    document.getElementById("suppliers")?.classList.add("active");
+  } else {
+    document.getElementById("suppliers")?.classList.remove("active");
+  }
+
+  if (path === "clients") {
+    document.getElementById("clients")?.classList.add("active");
+  } else {
+    document.getElementById("clients")?.classList.remove("active");
+  }
+};
+
+setStyle();

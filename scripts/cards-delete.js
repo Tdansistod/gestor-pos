@@ -3,7 +3,7 @@ const deleteSelected = () => {
   const selected = checkboxes
     .filter((checkbox) => checkbox.checked)
     .map((checkbox) => Number(checkbox.id));
-  const itemName = getItemName();
+  const itemName = getLocation();
   const data = JSON.parse(localStorage.getItem(itemName));
   const newData = data.filter((item) => !selected.includes(item.id));
   localStorage.setItem(itemName, JSON.stringify(newData));

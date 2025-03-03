@@ -1,5 +1,5 @@
 const search = () => {
-  const itemName = getItemName();
+  const itemName = getLocation();
   const properties = getProperties();
   const productos = JSON.parse(localStorage.getItem(itemName)) || [];
   const searchInput = document.getElementById("search");

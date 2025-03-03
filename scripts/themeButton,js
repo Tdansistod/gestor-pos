@@ -1,2 +1,0 @@
-if (localStorage.getItem("theme") === "dark")
-  document.getElementById("toggle").checked = true;

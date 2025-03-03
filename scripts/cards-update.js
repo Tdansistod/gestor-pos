@@ -9,7 +9,7 @@ const saveChange = (input, property) => {
   const id = input.name;
   const newValue = input.value;
 
-  const itemName = getItemName();
+  const itemName = getLocation();
   let data = JSON.parse(localStorage.getItem(itemName)) || [];
 
   let item = data.find((p) => p.id == id);

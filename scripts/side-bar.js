@@ -45,7 +45,7 @@ class SideBar extends HTMLElement {
       <h1 class="title">Caja</h1>
     </li>
     </a>
-    <a href="inventory.html" id="inventory">
+    <a href="products.html" id="products">
       <li>
         <svg
           width="1.5rem"
@@ -66,7 +66,7 @@ class SideBar extends HTMLElement {
         <h1 class="title">Gestión de inventario</h1>
       </li>
     </a>
-        <a href="supplier.html" id="supplier">
+        <a href="suppliers.html" id="suppliers">
     <li>
       <svg
         width="1.5rem"
@@ -83,7 +83,7 @@ class SideBar extends HTMLElement {
       <h1 class="title">Proveedores</h1>
     </li>
         </a>
-   <a href="client.html" id="client">
+   <a href="clients.html" id="clients">
     <li>
       <svg
         width="1.5rem"

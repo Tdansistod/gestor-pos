@@ -42,7 +42,7 @@ function handleFile() {
     // Agregar un ID basado en el índice
     jsonData = jsonData.map((item, index) => ({ id: index + 1, ...item }));
 
-    const itemName = getItemName();
+    const itemName = getLocation();
     localStorage.setItem(itemName, JSON.stringify(jsonData));
     document.getElementById("excel").close(); // Cierra el modal después de cargar el archivo
     displayCards();
