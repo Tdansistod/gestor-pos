@@ -185,35 +185,6 @@ html.is-leaving .transition-fade {
   padding: 0 2rem;
   background-color: var(--color-main);
 }
-.delete {
-  display: none;
-  position: relative;
-  justify-content: center;
-  align-items: center;
-  background-color: rgb(121, 0, 0);
-  color: #fff;
-  border-style: none;
-  height: 3rem;
-  padding: 0 2rem;
-  border-radius: 0.5em;
-  z-index: 1;
-  font-size: large;
-  transition: all 250ms;
-  cursor: pointer;
-}
-.delete::before {
-  content: "";
-  position: absolute;
-  height: 100%;
-  width: 0;
-  border-radius: 0.5em;
-  background-color: red;
-  z-index: -1;
-  transition: all 350ms;
-}
-.delete:hover::before {
-  width: 100%;
-}
 .subheader {
   display: flex;
   align-items: center;
@@ -275,26 +246,40 @@ html.is-leaving .transition-fade {
   color: var(--color-font);
   background-color: var(--color-background);
 }
-.container-btn-file {
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+  width: 45rem;
+  overflow: visible;
+}
+.excel-btn,
+.add-btn,
+.delete {
   display: flex;
   position: relative;
   justify-content: center;
   align-items: center;
   background-color: #307750;
-  color: #fff;
+  color: white;
   border-style: none;
   height: 3rem;
-  padding: 0 2rem;
+  padding: 0 1rem;
   border-radius: 0.5em;
   z-index: 1;
   font-size: large;
   transition: all 250ms;
   cursor: pointer;
 }
-.container-btn-file > svg {
+.excel-btn > svg,
+.add-btn > svg,
+.delete > svg {
   margin-right: 1rem;
 }
-.container-btn-file::before {
+.excel-btn::before,
+.add-btn::before,
+.delete::before {
   content: "";
   position: absolute;
   height: 100%;
@@ -304,8 +289,23 @@ html.is-leaving .transition-fade {
   z-index: -1;
   transition: all 350ms;
 }
-.container-btn-file:hover::before {
+.excel-btn:hover::before,
+.add-btn:hover::before,
+.delete:hover::before {
   width: 100%;
+}
+.add-btn {
+  background-color: var(--color-main);
+}
+.add-btn::before {
+  background-color: var(--color-highlight);
+}
+.delete {
+  display: none;
+  background-color: rgb(121, 0, 0);
+}
+.delete::before {
+  background-color: red;
 }
 dialog {
   border: none;
@@ -349,9 +349,7 @@ dialog button {
 }
 .fields {
   display: grid;
-  padding-left: 2rem;
-  grid-template-columns: 4rem 20rem 20rem 20rem 10rem;
-  grid-template-areas: "checkbox product category price stock";
+  grid-template-columns: 6rem 20rem 20rem 20rem 10rem;
   align-items: center;
   height: 4rem;
   font-size: large;
@@ -381,16 +379,16 @@ dialog button {
 }
 .card {
   display: grid;
-  padding-left: 2rem;
-  grid-template-columns: 4rem 20rem 20rem 20rem 10rem;
-  grid-template-areas: "checkbox product category price stock";
+  grid-template-columns: 6rem 20rem 20rem 20rem 10rem;
   align-items: center;
   width: fit-content;
   min-width: calc(100% - 2.1rem);
-
   border-bottom: 0.1rem var(--color-secondary) solid;
   border-right: 0.1rem var(--color-secondary) solid;
   height: 4rem;
+}
+.card:has(> label input[type="checkbox"]:checked) {
+  background-color: var(--color-secondary);
 }
 .card input[type="text"] {
   height: 3rem;
@@ -398,7 +396,7 @@ dialog button {
   font-size: large;
   border: none;
   color: var(--color-font);
-  background-color: var(--color-background);
+  background-color: transparent;
 }
 .card input[type="text"]:focus {
   outline: none;
@@ -414,7 +412,9 @@ dialog button {
   width: 0;
 }
 .checkboxContainer {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
   cursor: pointer;
   font-size: 1.5rem;
@@ -459,7 +459,7 @@ dialog button {
 
 @keyframes pulse {
   0% {
-    box-shadow: 0 0 0 #0b6e4f90;
+    box-shadow: 0 0 0 #7471ec90;
     rotate: 20deg;
   }
 
@@ -468,11 +468,38 @@ dialog button {
   }
 
   75% {
-    box-shadow: 0 0 0 10px #0b6e4f60;
+    box-shadow: 0 0 0 10px #4d56a160;
   }
 
   100% {
-    box-shadow: 0 0 0 13px #0b6e4f30;
+    box-shadow: 0 0 0 13px #3c3a7730;
     rotate: 0;
   }
+}
+.cardButtons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.create,
+.cancel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0 1rem 1rem 0;
+  padding: 0.5rem;
+  border: none;
+  color: var(--color-font);
+  background-color: var(--color-main);
+  cursor: pointer;
+  transition: 200ms ease;
+}
+.create:hover {
+  background-color: rgb(20, 165, 1);
+}
+.cancel {
+  border-radius: 1rem 0 0 1rem;
+}
+.cancel:hover {
+  background-color: rgb(245, 37, 37);
 }
