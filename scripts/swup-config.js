@@ -26,16 +26,12 @@ const setStyle = (url = window.location.pathname) => {
   } else {
     document.getElementById("clients")?.classList.remove("active");
   }
-
-  if (path === "history") {
-    document.getElementById("history")?.classList.add("active");
-  } else {
-    document.getElementById("history")?.classList.remove("active");
-  }
 };
 
 setStyle();
 
 swup.hooks.on("page:view", (visit) => {
   setStyle(visit.to.url);
+  displayCards();
+  search();
 });

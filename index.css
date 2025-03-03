@@ -6,14 +6,12 @@
   --color-secondary: #c0cfee;
   --sideBar-width: 20rem;
 }
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-main: #024de6;
-    --color-highlight: #3571eb;
-    --color-font: #e5edfc;
-    --color-background: #131313;
-    --color-secondary: #363636;
-  }
+.dark-mode {
+  --color-main: #024de6;
+  --color-highlight: #3571eb;
+  --color-font: #e5edfc;
+  --color-background: #131313;
+  --color-secondary: #363636;
 }
 body {
   display: flex;
@@ -23,6 +21,7 @@ body {
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
+  color: var(--color-font);
   background-color: var(--color-background);
 }
 h1,
@@ -34,6 +33,9 @@ h5 {
 }
 a {
   text-decoration: none;
+}
+p {
+  margin: 0;
 }
 .sidebar {
   color: var(--color-font);
@@ -84,6 +86,75 @@ a {
 .active {
   background-color: var(--color-highlight);
 }
+
+#theme-toggle-button {
+  justify-self: flex-end;
+  font-size: 17px;
+  position: relative;
+  display: inline-block;
+  width: 4rem;
+  cursor: pointer;
+  margin-top: auto;
+}
+
+#toggle {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+#container,
+#patches,
+#stars,
+#button,
+#sun,
+#moon,
+#cloud {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 0.25s;
+}
+
+#toggle:checked + svg #container {
+  fill: #2b4360;
+}
+
+#toggle:checked + svg #button {
+  transform: translate(28px, 2.333px);
+}
+
+#sun {
+  opacity: 1;
+}
+
+#toggle:checked + svg #sun {
+  opacity: 0;
+}
+
+#moon {
+  opacity: 0;
+}
+
+#toggle:checked + svg #moon {
+  opacity: 1;
+}
+
+#cloud {
+  opacity: 1;
+}
+
+#toggle:checked + svg #cloud {
+  opacity: 0;
+}
+
+#stars {
+  opacity: 0;
+}
+
+#toggle:checked + svg #stars {
+  opacity: 1;
+}
+
 /* main content */
 .transition-fade {
   opacity: 1;
@@ -107,31 +178,67 @@ html.is-leaving .transition-fade {
 .header {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   color: #e5edfc;
   height: 4rem;
   font-size: small;
-  padding-left: 1rem;
+  padding: 0 2rem;
   background-color: var(--color-main);
 }
-.searchAndFilters {
-  display: flex;
+.delete {
+  display: none;
+  position: relative;
+  justify-content: center;
   align-items: center;
-  height: 4rem;
+  background-color: rgb(121, 0, 0);
+  color: #fff;
+  border-style: none;
+  height: 3rem;
+  padding: 0 2rem;
+  border-radius: 0.5em;
   z-index: 1;
+  font-size: large;
+  transition: all 250ms;
+  cursor: pointer;
+}
+.delete::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 0;
+  border-radius: 0.5em;
+  background-color: red;
+  z-index: -1;
+  transition: all 350ms;
+}
+.delete:hover::before {
+  width: 100%;
 }
 .subheader {
   display: flex;
   align-items: center;
-  padding-left: 1rem;
+  padding-left: 2rem;
   height: 4rem;
   font-size: large;
   color: var(--color-font);
 }
+.actionBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 2rem;
+  height: 4rem;
+  z-index: 1;
+}
+.searchContainer {
+  width: 40rem;
+  height: 100%;
+}
 .searchBar {
-  color: var(--color-font);
   font-size: x-large;
-  padding-left: 1rem;
-  flex: 1;
+  padding: 0 0 0 2rem;
+  color: var(--color-font);
+  width: 100%;
   height: 100%;
   background-color: var(--color-background);
   border: none;
@@ -139,20 +246,124 @@ html.is-leaving .transition-fade {
 .searchBar:focus {
   outline: 0.2rem solid var(--color-font);
 }
-.fields {
+.searchContainer:focus-within .autocomplete {
+  display: block;
+}
+.autocomplete {
+  display: none;
+  background-color: var(--color-secondary);
+  color: var(--color-font);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  z-index: 1;
+  overflow-y: auto;
+  width: 42rem;
+}
+.autocomplete button {
+  text-align: left;
+  width: 100%;
+  padding: 1rem 0 1rem 2rem;
+  cursor: pointer;
+  color: var(--color-background);
+  background-color: var(--color-font);
+  border: none;
+  font-size: large;
+}
+.autocomplete button:hover {
+  color: var(--color-font);
+  background-color: var(--color-background);
+}
+.container-btn-file {
   display: flex;
+  position: relative;
+  justify-content: center;
   align-items: center;
-  justify-content: space-around;
-  padding-left: 1rem;
-  height: 2.5rem;
+  background-color: #307750;
+  color: #fff;
+  border-style: none;
+  height: 3rem;
+  padding: 0 2rem;
+  border-radius: 0.5em;
+  z-index: 1;
+  font-size: large;
+  transition: all 250ms;
+  cursor: pointer;
+}
+.container-btn-file > svg {
+  margin-right: 1rem;
+}
+.container-btn-file::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 0;
+  border-radius: 0.5em;
+  background-color: #469b61;
+  z-index: -1;
+  transition: all 350ms;
+}
+.container-btn-file:hover::before {
+  width: 100%;
+}
+dialog {
+  border: none;
+  border-radius: 1rem;
+  background-color: var(--color-main);
+}
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.dialogContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+  padding: 1rem;
+  gap: 1rem;
+  font-weight: 600;
+  min-width: 20rem;
+  cursor: pointer;
+  color: var(--color-font);
+  background-color: var(--color-background);
+  border-radius: 1rem;
+}
+dialog input {
+  display: none;
+}
+dialog button {
+  color: var(--color-font);
+  background-color: var(--color-background);
+  border: none;
+  font-weight: 600;
+  font-size: medium;
+  padding: 0.5rem 0;
+  width: 100%;
+  border-radius: 1rem;
+  cursor: pointer;
+}
+.dragover {
+  color: var(--color-background);
+  background-color: var(--color-font);
+}
+.fields {
+  display: grid;
+  padding-left: 2rem;
+  grid-template-columns: 4rem 20rem 20rem 20rem 10rem;
+  grid-template-areas: "checkbox product category price stock";
+  align-items: center;
+  height: 4rem;
   font-size: large;
   color: var(--color-font);
   background-color: var(--color-secondary);
 }
 .cards {
   flex: 1 1 auto;
-  overflow-y: auto;
+  overflow: auto;
   height: 0px;
+  max-width: calc(100vw - 4rem);
+  color: var(--color-font);
 }
 .cards::-webkit-scrollbar {
   width: 1rem;
@@ -163,8 +374,105 @@ html.is-leaving .transition-fade {
 .cards::-webkit-scrollbar-thumb {
   background: var(--color-secondary);
 }
+.message {
+  text-align: center;
+  padding: 1rem 0;
+  font-size: large;
+}
 .card {
+  display: grid;
+  padding-left: 2rem;
+  grid-template-columns: 4rem 20rem 20rem 20rem 10rem;
+  grid-template-areas: "checkbox product category price stock";
+  align-items: center;
+  width: fit-content;
+  min-width: calc(100% - 2.1rem);
+
   border-bottom: 0.1rem var(--color-secondary) solid;
   border-right: 0.1rem var(--color-secondary) solid;
   height: 4rem;
+}
+.card input[type="text"] {
+  height: 3rem;
+  width: 90%;
+  font-size: large;
+  border: none;
+  color: var(--color-font);
+  background-color: var(--color-background);
+}
+.card input[type="text"]:focus {
+  outline: none;
+}
+.activeInput {
+  outline: 0.1rem var(--color-font) solid !important;
+}
+.checkboxContainer input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+.checkboxContainer {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  font-size: 1.5rem;
+  user-select: none;
+}
+.checkmark {
+  --clr: var(--color-main);
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 1.3em;
+  width: 1.3em;
+  background-color: var(--color-font);
+  border-radius: 50%;
+  transition: 300ms;
+}
+
+.checkboxContainer input:checked ~ .checkmark {
+  background-color: var(--clr);
+  border-radius: 0.5rem;
+  animation: pulse 300ms ease-in-out;
+}
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.checkboxContainer input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.checkboxContainer .checkmark:after {
+  left: 0.45em;
+  top: 0.25em;
+  width: 0.25em;
+  height: 0.5em;
+  border: solid #e0e0e2;
+  border-width: 0 0.15em 0.15em 0;
+  transform: rotate(45deg);
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 #0b6e4f90;
+    rotate: 20deg;
+  }
+
+  50% {
+    rotate: -20deg;
+  }
+
+  75% {
+    box-shadow: 0 0 0 10px #0b6e4f60;
+  }
+
+  100% {
+    box-shadow: 0 0 0 13px #0b6e4f30;
+    rotate: 0;
+  }
 }
