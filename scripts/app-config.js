@@ -1,9 +1,10 @@
 const getItemName = () => {
   let itemName = "";
   const url = window.location.pathname;
-  if (url === "/inventory.html") itemName = "products";
-  if (url === "/supplier.html") itemName = "suppliers";
-  if (url === "/client.html") itemName = "clients";
+  const path = url.split("/").pop().replace(".html", "");
+  if (path === "/inventory.html") itemName = "products";
+  if (path === "/supplier.html") itemName = "suppliers";
+  if (path === "/client.html") itemName = "clients";
   return itemName;
 };
 const getProperties = () => {
