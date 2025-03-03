@@ -15,6 +15,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.1/xlsx.full.min.js"></script>
     <script src="scripts/side-bar.js"></script>
     <script src="scripts/app-config.js"></script>
+    <script defer src="scripts/fields-display.js"></script>
     <script defer src="scripts/selection.js"></script>
     <script defer src="scripts/excel-reader.js"></script>
     <script defer src="scripts/search.js"></script>
@@ -162,21 +163,7 @@
           </dialog>
         </div>
       </div>
-      <div class="fields">
-        <label class="checkboxContainer">
-          <input
-            type="checkbox"
-            class="itemCheckbox"
-            id="selectAll"
-            onchange="mainCheckboxHandler(this)"
-          />
-          <div class="checkmark"></div>
-        </label>
-        <p>Producto</p>
-        <p>Categoría</p>
-        <p>Precio</p>
-        <p>Stock</p>
-      </div>
+      <div class="fields" id="fields"></div>
       <div class="cards"></div>
     </main>
     <script src="scripts/Swup.umd.js"></script>
