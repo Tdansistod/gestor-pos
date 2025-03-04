@@ -13,6 +13,7 @@ const deleteSelected = () => {
     document.getElementById("selectAll").checked = false;
     document.getElementById("search").value = "";
     showHideButtons();
+    calculateTotal();
     return;
   }
   const data = JSON.parse(localStorage.getItem(itemName));
