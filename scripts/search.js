@@ -9,6 +9,10 @@ const search = () => {
   const resultsList = document.getElementById("autocomplete-list");
   searchInput?.focus();
 
+  searchInput?.addEventListener("focus", function () {
+    this.select();
+  });
+
   searchInput?.addEventListener("input", () => {
     const query = searchInput.value.toLowerCase();
     resultsList.innerHTML = "";
