@@ -1,7 +1,9 @@
 const search = () => {
   const properties = getProperties();
   let location = getLocation();
+  let itemName = "";
   if (location === "/" || location === "index") itemName = "products";
+  else itemName = location;
   const data = JSON.parse(localStorage.getItem(itemName)) || [];
   const searchInput = document.getElementById("search");
   const resultsList = document.getElementById("autocomplete-list");
