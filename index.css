@@ -185,6 +185,9 @@ html.is-leaving .transition-fade {
   padding: 0 2rem;
   background-color: var(--color-main);
 }
+.total {
+  font-size: x-large;
+}
 .subheader {
   display: flex;
   align-items: center;

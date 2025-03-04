@@ -1,5 +1,9 @@
 const displayFields = () => {
-  const properties = getProperties();
+  let properties = getProperties();
+  const location = getLocation();
+  if (location === "/" || location === "index") {
+    properties = ["Producto", "Precio", "Cantidad", "Subtotal"];
+  }
   const fields = document.getElementById("fields");
   fields.innerHTML = `
   <label class="checkboxContainer">

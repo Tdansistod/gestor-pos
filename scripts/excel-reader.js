@@ -1,16 +1,16 @@
 const dropArea = document.getElementById("drop-area");
 const fileInput = document.getElementById("file-upload");
 
-dropArea.addEventListener("dragover", (e) => {
+dropArea?.addEventListener("dragover", (e) => {
   e.preventDefault();
   dropArea.classList.add("dragover");
 });
 
-dropArea.addEventListener("dragleave", () =>
+dropArea?.addEventListener("dragleave", () =>
   dropArea.classList.remove("dragover")
 );
 
-dropArea.addEventListener("drop", (e) => {
+dropArea?.addEventListener("drop", (e) => {
   e.preventDefault();
   dropArea.classList.remove("dragover");
 

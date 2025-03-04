@@ -5,7 +5,7 @@ const getLocation = () => {
 const getProperties = () => {
   let properties = [];
   const type = getLocation();
-
+  if (type === "/" || type === "index") properties = ["Producto", "Precio"];
   if (type === "products")
     properties = ["Producto", "Categoría", "Precio", "Stock"];
   if (type === "suppliers") properties = ["Proveedor", "Contacto", "Teléfono"];

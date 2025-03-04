@@ -5,49 +5,122 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sistema de Gestión</title>
     <link rel="stylesheet" href="./index.css" />
+    <script src="scripts/theme.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Encode+Sans:wght@100..900&display=swap"
       rel="stylesheet"
     />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.1/xlsx.full.min.js"></script>
+    <script src="scripts/side-bar.js"></script>
+    <script src="scripts/app-config.js"></script>
+    <script defer src="scripts/fields-display.js"></script>
+    <script defer src="scripts/selection.js"></script>
+    <script defer src="scripts/excel-reader.js"></script>
+    <script defer src="scripts/search.js"></script>
+    <script defer src="scripts/cards-read.js"></script>
+    <script defer src="scripts/cards-update.js"></script>
+    <script defer src="scripts/cards-create.js"></script>
+    <script defer src="scripts/cards-delete.js"></script>
+    <script defer src="scripts/cart.js"></script>
   </head>
-  <script src="./web-components.js"></script>
   <body>
     <side-bar></side-bar>
+    <script src="scripts/set-style,js"></script>
     <main class="content transition-fade" id="swup">
-      <div class="header"><h1>Caja</h1></div>
-      <div class="subheader">
-        <h2>Añadir productos</h2>
+      <div class="header">
+        <h1>Caja</h1>
+        <h2 class="total">Total: <span id="total"></span></h2>
       </div>
-      <div class="searchAndFilters">
-        <input
-          class="searchBar"
-          placeholder="Buscar por nombre, marca o código de barras"
-        />
+      <div class="actionBar">
+        <div class="searchContainer">
+          <input
+            class="searchBar"
+            id="search"
+            placeholder="Buscar por nombre"
+          />
+          <div id="autocomplete-list" class="autocomplete"></div>
+        </div>
+        <div class="buttons">
+          <button id="delete" class="delete" onclick="deleteSelected()">
+            <svg
+              width="2rem"
+              height="2rem"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M10 11V17"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M14 11V17"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M4 7H20"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M6 7H12H18V18C18 19.6569 16.6569 21 15 21H9C7.34315 21 6 19.6569 6 18V7Z"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            Eliminar elementos
+          </button>
+          <button
+            class="add-btn"
+            onclick="document.getElementById('payment').showModal();"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor"
+              width="2rem"
+              height="2rem"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"
+              />
+            </svg>
+            Cobrar
+          </button>
+          <dialog id="payment" class="modal">
+            <button
+              class="button"
+              onclick="document.getElementById('payment').close();"
+            >
+              Volver
+            </button>
+            <button></button>
+          </dialog>
+        </div>
       </div>
-      <div class="fields">
-        <p>Producto</p>
-        <p>Categoría</p>
-        <p>Precio Unitario</p>
-        <p>Cantidad</p>
-        <p>Subtotal</p>
-      </div>
-      <div class="cards">
-        <div class="card"></div>
-        <div class="card"></div>
-        <div class="card"></div>
-        <div class="card"></div>
-        <div class="card"></div>
-        <div class="card"></div>
-        <div class="card"></div>
-        <div class="card"></div>
-        <div class="card"></div>
-        <div class="card"></div>
-        <div class="card"></div>
-      </div>
+      <div class="fields" id="fields"></div>
+      <div class="cards"></div>
     </main>
-    <script src="./Swup.umd.js"></script>
-    <script src="./swup-config.js"></script>
+    <script src="scripts/Swup.umd.js"></script>
+    <script src="scripts/swup-config.js"></script>
   </body>
 </html>

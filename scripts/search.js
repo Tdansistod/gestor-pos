@@ -1,7 +1,8 @@
 const search = () => {
-  const itemName = getLocation();
   const properties = getProperties();
-  const productos = JSON.parse(localStorage.getItem(itemName)) || [];
+  let location = getLocation();
+  if (location === "/" || location === "index") itemName = "products";
+  const data = JSON.parse(localStorage.getItem(itemName)) || [];
   const searchInput = document.getElementById("search");
   const resultsList = document.getElementById("autocomplete-list");
   searchInput?.focus();
@@ -11,11 +12,12 @@ const search = () => {
     resultsList.innerHTML = "";
 
     if (!query) {
-      displayCards(undefined, undefined);
+      if (location !== "/" && location !== "index")
+        displayCards(undefined, undefined);
       return; // Si está vacío, no mostrar nada
     }
 
-    const filtered = productos.filter((p) =>
+    const filtered = data.filter((p) =>
       p[properties[0]].toLowerCase().includes(query)
     );
     filtered
@@ -30,7 +32,9 @@ const search = () => {
         });
         resultsList.appendChild(button);
       });
-    displayCards(undefined, filtered);
+
+    if (location !== "index" && location !== "/")
+      displayCards(undefined, filtered);
   });
 
   document.addEventListener("keydown", (e) => {

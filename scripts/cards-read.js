@@ -4,17 +4,17 @@ function displayCards(event, filtered) {
   const data = filtered || JSON.parse(localStorage.getItem(itemName));
 
   if (!data || !data[0]) {
-    container.innerHTML = "<p class='message'>Sin elementos</p>";
+    if (itemName !== "/" && itemName !== "index")
+      container.innerHTML = "<p class='message'>Sin elementos</p>";
     return;
   }
-  container.innerHTML = ""; // Limpiar antes de mostrar
+  if (itemName !== "/" && itemName !== "index") container.innerHTML = ""; // Limpiar antes de mostrar
   const properties = getProperties();
 
   data.forEach((item) => {
     const card = document.createElement("div");
     card.classList.add("card");
 
-    // Ajusta las claves según las columnas del Excel
     card.innerHTML = `
           <label class="checkboxContainer">
             <input type="checkbox" class="itemCheckbox" id="${item.id}" 
@@ -26,18 +26,46 @@ function displayCards(event, filtered) {
               (e) => `
             <input name="${item.id}"
           type="text"
+          category="${e}"
           value="${item[e] || "Sin datos"}"
-          readonly
-          ondblclick="showField(this)"
+          ${
+            itemName === "index" || itemName === "/"
+              ? ""
+              : `readonly
+          ondblclick="showField(this)"           
           onblur="saveChange(this, '${e}')"
-          onkeydown="if(event.key === 'Enter') saveChange(this, '${e}')"
+          onkeydown="if(event.key === 'Enter') saveChange(this, '${e}')"`
+          }
           />
             `
             )
             .join("")}
-      `;
+                        ${
+                          itemName === "index" || itemName === "/"
+                            ? `
+            <input id="quantity"
+          type="text"
+          value=1
+          readonly
+          onclick="showField(this)"
+          onchange="calculate(this)"
+          onkeydown="if(event.key === 'Enter') calculate(this)"
+
+          />
+          <input id="subtotal"
+          type="text"
+          readonly
+          />
+            `
+                            : ""
+                        }
+`;
 
     container.appendChild(card);
+    if (itemName === "index" || itemName === "/") {
+      calculate(card.querySelector(`input[id="quantity"]`));
+      calculateTotal();
+    }
   });
 }
 
