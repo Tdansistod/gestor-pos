@@ -506,3 +506,17 @@ dialog button {
 .cancel:hover {
   background-color: rgb(245, 37, 37);
 }
+#payment .content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 2rem 1rem;
+  gap: 2rem;
+}
+#payment .content button {
+  padding: 1rem 5rem;
+}
+#payment .content button:hover {
+  background-color: var(--color-secondary);
+}
