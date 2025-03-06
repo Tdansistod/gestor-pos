@@ -47,21 +47,11 @@ p {
   height: 100vh;
   transition: width 0.3s ease-in-out;
 }
-.sidebar:hover {
-  width: var(--sideBar-width);
-}
-.profile {
-  display: flex;
-  align-items: center;
-  padding: 1.25rem;
-  width: var(--sideBar-width);
-  gap: 1.25rem;
-  background-color: var(--color-background);
-}
 .sidebar ul {
   display: flex;
   flex-direction: column;
   list-style: none;
+  height: 100%;
   padding: 0;
   margin: 0;
 }
@@ -70,14 +60,60 @@ p {
   align-items: center;
   gap: 1.25rem;
   color: #e5edfc;
+  fill: #e5edfc;
   height: 3rem;
-  width: var(--sideBar-width);
-  padding: 0.5rem 0.5rem 0.5rem 1.25rem;
+  width: calc(var(--sideBar-width) - 2.5rem);
+  padding: 0.5rem 1.25rem;
   transition: background-color 100ms ease;
   cursor: pointer;
 }
 .sidebar ul li:hover {
   background-color: var(--color-highlight);
+}
+.openSideBar {
+  width: var(--sideBar-width);
+}
+.switchSideBar {
+  background-color: var(--color-background);
+}
+.switchSideBar .chevron-right {
+  position: absolute;
+  animation: keyframes-return 0.5s backwards;
+}
+.switchSideBar input:checked ~ .chevron-right {
+  animation: keyframes-rotate 0.5s backwards;
+  transform: rotate(180deg);
+}
+.switchSideBar input {
+  display: none;
+}
+@keyframes keyframes-rotate {
+  0% {
+    transform: rotate(0deg);
+    opacity: 0;
+  }
+
+  100% {
+    transform: rotate(180deg);
+  }
+}
+@keyframes keyframes-return {
+  0% {
+    transform: rotate(180deg);
+    opacity: 0;
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+.settings {
+  margin-top: auto;
+}
+.account,
+.switchSideBar {
+  color: var(--color-font) !important;
+  background-color: var(--color-secondary);
 }
 .title {
   width: max-content;
@@ -173,7 +209,7 @@ html.is-leaving .transition-fade {
 .content {
   display: flex;
   flex-direction: column;
-  flex: 1;
+  width: calc(100% - 4rem);
 }
 .header {
   display: flex;
@@ -205,7 +241,7 @@ html.is-leaving .transition-fade {
   z-index: 1;
 }
 .searchContainer {
-  width: 40rem;
+  width: 20rem;
   height: 100%;
 }
 .searchBar {
@@ -328,8 +364,7 @@ dialog::backdrop {
   font-weight: 600;
   min-width: 20rem;
   cursor: pointer;
-  color: var(--color-font);
-  background-color: var(--color-background);
+  color: white;
   border-radius: 1rem;
 }
 dialog input {
@@ -341,54 +376,54 @@ dialog button {
   border: none;
   font-weight: 600;
   font-size: medium;
-  padding: 0.5rem 0;
+  padding: 1rem 0;
   width: 100%;
   border-radius: 1rem;
   cursor: pointer;
+}
+dialog button:hover {
+  color: var(--color-font);
+  background-color: var(--color-secondary);
 }
 .dragover {
   color: var(--color-background);
   background-color: var(--color-font);
 }
-.fields {
-  display: grid;
-  grid-template-columns: 6rem 20rem 20rem 20rem 10rem;
-  align-items: center;
-  height: 4rem;
-  font-size: large;
-  color: var(--color-font);
-  background-color: var(--color-secondary);
-}
-.cards {
+/* table */
+.tableContainer {
   flex: 1 1 auto;
+  height: 0;
   overflow: auto;
-  height: 0px;
-  max-width: calc(100vw - 4rem);
-  color: var(--color-font);
 }
-.cards::-webkit-scrollbar {
+.tableContainer::-webkit-scrollbar {
   width: 1rem;
 }
-.cards::-webkit-scrollbar-track {
+.tableContainer::-webkit-scrollbar-track {
   background: var(--color-background);
 }
-.cards::-webkit-scrollbar-thumb {
+.tableContainer::-webkit-scrollbar-thumb {
   background: var(--color-secondary);
+}
+.fields,
+.card {
+  display: grid;
+  grid-template-columns: 6rem 20rem 15rem 15rem 15rem;
+  align-items: center;
+  height: 4rem;
+  width: fit-content;
+  font-size: large;
+  color: var(--color-font);
+  min-width: calc(100% - 0.1rem);
+  border-top: 0.1rem var(--color-secondary) solid;
+  border-right: 0.1rem var(--color-secondary) solid;
+}
+.card {
+  height: 3rem;
 }
 .message {
   text-align: center;
   padding: 1rem 0;
   font-size: large;
-}
-.card {
-  display: grid;
-  grid-template-columns: 6rem 20rem 20rem 20rem 10rem;
-  align-items: center;
-  width: fit-content;
-  min-width: calc(100% - 2.1rem);
-  border-bottom: 0.1rem var(--color-secondary) solid;
-  border-right: 0.1rem var(--color-secondary) solid;
-  height: 4rem;
 }
 .card:has(> label input[type="checkbox"]:checked) {
   background-color: var(--color-secondary);
@@ -420,7 +455,7 @@ dialog button {
   justify-content: center;
   position: relative;
   cursor: pointer;
-  font-size: 1.5rem;
+  font-size: 1rem;
   user-select: none;
 }
 .checkmark {
@@ -505,18 +540,4 @@ dialog button {
 }
 .cancel:hover {
   background-color: rgb(245, 37, 37);
-}
-#payment .content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  padding: 2rem 1rem;
-  gap: 2rem;
-}
-#payment .content button {
-  padding: 1rem 5rem;
-}
-#payment .content button:hover {
-  background-color: var(--color-secondary);
 }
