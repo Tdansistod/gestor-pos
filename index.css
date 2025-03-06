@@ -10,8 +10,8 @@
   --color-main: #024de6;
   --color-highlight: #3571eb;
   --color-font: #e5edfc;
-  --color-background: #131313;
-  --color-secondary: #363636;
+  --color-background: #202020;
+  --color-secondary: #303030;
 }
 body {
   display: flex;
@@ -222,7 +222,8 @@ html.is-leaving .transition-fade {
   background-color: var(--color-main);
 }
 .total {
-  font-size: x-large;
+  font-size: xx-large;
+  letter-spacing: 0.2rem;
 }
 .subheader {
   display: flex;
@@ -269,7 +270,7 @@ html.is-leaving .transition-fade {
   position: relative;
   z-index: 1;
   overflow-y: auto;
-  width: 42rem;
+  width: 22rem;
 }
 .autocomplete button {
   text-align: left;
@@ -371,11 +372,16 @@ dialog input {
   display: none;
 }
 dialog button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column-reverse;
+  gap: 1rem;
   color: var(--color-font);
   background-color: var(--color-background);
   border: none;
   font-weight: 600;
-  font-size: medium;
+  font-size: large;
   padding: 1rem 0;
   width: 100%;
   border-radius: 1rem;

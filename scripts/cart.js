@@ -1,9 +1,11 @@
 const calculate = (input) => {
   const card = input.closest(".card");
   const price = card.querySelector(`input[category="Precio"]`).value;
-  card.querySelector(`input[id="subtotal"]`).value =
-    Number(input.value) * Number(price);
+  card.querySelector(`input[id="subtotal"]`).value = `$${(
+    Number(input.value) * Number(price.replace("$", "").replace(/\./g, ""))
+  ).toLocaleString("es-AR")}`;
   input.classList.remove("activeInput");
+  calculateTotal();
 };
 const calculateTotal = () => {
   const cards = document.querySelectorAll(".card");
@@ -11,8 +13,10 @@ const calculateTotal = () => {
   cards.forEach((card) => {
     const input = card.querySelector("#subtotal");
     if (input) {
-      total += parseFloat(input.value) || 0; // Convierte a número y evita NaN
+      total += Number(input.value.replace("$", "").replace(/\./g, "")) || 0; // Convierte a número y evita NaN
     }
   });
-  document.getElementById("total").innerHTML = total;
+  document.getElementById("total").innerHTML = `$${total.toLocaleString(
+    "es-AR"
+  )}`;
 };

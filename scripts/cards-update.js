@@ -7,7 +7,7 @@ const saveChange = (input, property) => {
   input.setAttribute("readonly", true);
 
   const id = input.name;
-  const newValue = input.value;
+  const newValue = input.value.replace("$", "");
 
   const itemName = getLocation();
   let data = JSON.parse(localStorage.getItem(itemName)) || [];

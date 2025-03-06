@@ -27,7 +27,11 @@ function displayCards(event, filtered) {
             <input name="${item.id}"
           type="text"
           category="${e}"
-          value="${item[e] || "Sin datos"}"
+          value="${
+            e === "Precio"
+              ? `$${Number(item[e]).toLocaleString("es-AR")}`
+              : item[e] || "Sin datos"
+          }"
           ${
             itemName === "index" || itemName === "/"
               ? ""
